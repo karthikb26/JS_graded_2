@@ -11,7 +11,7 @@ function handleFormSubmit(event) {
   for (let cred of credentials) {
     console.log(cred.username, username.value);
     if (cred.username === username.value && cred.password === password.value) {
-      location.replace("../html/main.html");
+      location.replace("../resume-page.html");
     }
   }
   error.style.display = "block";
