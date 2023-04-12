@@ -6,7 +6,6 @@ document.querySelector('.resume').onclick = () => {
     let checkPassword = localStorage.getItem('enter password');
 
     if (user != userName || password != checkPassword) {
-        alert(userName+" "+checkPassword);
         alert("Invalid Cridential");
         return false;
     }
