@@ -2,11 +2,12 @@ let resumeData = { resume: [] };
 let allResumes = resumeData["resume"];
 let currentResumeIndex = 0;
 
-
+// References to all nodes
+// Action Nodes
 const previousBtn = document.getElementById("previousBtn");
 const nextBtn = document.getElementById("nextBtn");
 const searchBar = document.getElementById("search");
-
+// Data Nodes
 const loader = document.getElementById("loader");
 const noResultContainer = document.getElementById("noResultContainer");
 const resumeContainer = document.getElementById("resumeContainer");
@@ -23,7 +24,7 @@ const education = document.getElementById("education");
 const internship = document.getElementById("internship");
 const achievements = document.getElementById("achievements");
 
-
+// Will check which buttons to display based on currentResumeIndex and allResumes(filtered out on the basis of search input)
 const checkButtonsToDisplay = () => {
     if (currentResumeIndex + 1 >= allResumes.length) {
         nextBtn.style.visibility = "hidden";
@@ -75,7 +76,7 @@ const fillData = () => {
   ).join('')}</ul>`;
 };
 
-// will check the length of filtered out resumes
+// will check the length of filtered out resumes based on search input and makes a decision which container to show, no results or resume
 const checkResumes = () => {
   if (allResumes.length > 0) {
     noResultContainer.style.display = "none";
@@ -87,7 +88,12 @@ const checkResumes = () => {
   }
 };
 
-fetch("../resources/data/Data.json")
+// Data.json was uploaded to npoint as browser was not allowing to read a local file automatically, but both options are working perfectly fine. One has been commented, you can check that too by commenting this and uncommenting the next one
+
+//fetch("resource\data\data.js")
+  //with the following location, it is able to read as well
+
+   fetch("../resources/data/Data.json") // this is also working fine
   .then((response) => data.js())
   .then((respdata) => {
     loader.style.display = "none";
@@ -98,7 +104,9 @@ fetch("../resources/data/Data.json")
     fillData();
   })
   .catch((error) => {
-   
+    // alert(
+    //   "Page interrupted or Unable to load file from npoint. Loading the data from local."
+    // );
     loader.style.display = "none";
     resumeData = data;
     allResumes = resumeData["resume"];
@@ -107,7 +115,7 @@ fetch("../resources/data/Data.json")
     fillData();
   });
 
-// will filter resumes
+// will filter our resumes and saves it to allResumes and checks which buttons to display
 searchBar.oninput = function (event) {
   const searchInput = event.target.value;
   if (searchInput.length > 0) {
