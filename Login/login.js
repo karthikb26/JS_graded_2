@@ -1,18 +1,18 @@
-let username = document.getElementById("username");
-let password = document.getElementById("password");
-let form = document.getElementById("form");
-let error = document.getElementById("error");
+document.querySelector('.resume').onclick = () => {
 
-form.addEventListener("submit", handleFormSubmit);
+    let user = document.querySelector('#user').value;
+    let password = document.querySelector('#password').value;
+    let userName = localStorage.getItem('user name');
+    let checkPassword = localStorage.getItem('enter password');
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  for (let cred of credentials) {
-    console.log(cred.username, username.value);
-    if (cred.username === username.value && cred.password === password.value) {
-      location.replace("../resume-page.html");
+    if (user != userName || password != checkPassword) {
+        alert(userName+" "+checkPassword);
+        alert("Invalid Cridential");
+        return false;
     }
-  }
-  error.style.display = "block";
-}
+    return true;
+};
+
+function preventback() { window.history.forward(); }
+setTimeout("preventback()", 0);
+window.onunload = function() { null };
